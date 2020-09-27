@@ -24,7 +24,7 @@ You need to deploy the smart contract to NEAR blockchain.
 yarn deploy:dev
 ```
 
-or you can just use the already deployed contract on testnet at [dev-1601093501138-5843386]()
+or you can just use the already deployed contract on testnet at [dev-1601093501138-5843386](https://explorer.testnet.near.org/accounts/dev-1601093501138-5843386)
 
 ## Run Indexer
 

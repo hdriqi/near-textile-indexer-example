@@ -26,6 +26,17 @@ yarn deploy:dev
 
 or you can just use the already deployed contract on testnet at [dev-1601093501138-5843386](https://explorer.testnet.near.org/accounts/dev-1601093501138-5843386)
 
+## Generate Account
+
+You need to provide a master account that can write to the database.
+
+```bash
+node gen-account.js
+```
+
+Copy the publicKey and put it in in writeValidator function in `index.js`. 
+Copy the privateKey and put it in to `env` variables for indexer authentication.
+
 ## Run Indexer
 
 Before running the indexer, make sure you create the `.env` based on the sample provided.
@@ -39,3 +50,7 @@ node index.js
 ## Query
 
 After indexing, you can query the data using the example query provided on `example-query.js`
+
+```bash
+node example-query.js
+```

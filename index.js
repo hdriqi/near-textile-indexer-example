@@ -1,16 +1,24 @@
 const dotenv = require('dotenv')
-const indexer = require('./src/index')
-const { Where } = require('@textile/hub')
+const indexer = require('near-textile-indexer')
+const { Where } = require('near-textile-indexer/textile')
 
 dotenv.config()
+
+const writeValidator = (writer) => {
+	if (writer == 'bbaareigzrypntrkuzr54rg2q235qqqpmhtda3jwelvmxbutnupifumy26i') {
+		return true
+	}
+	return false
+}
 
 const config = {
 	networkId: process.env.NETWORK_ID,
 	nodeUrl: process.env.NODE_URL,
 	contractName: process.env.CONTRACT_NAME,
 	keyInfo: {
-		key: process.env.TEXTILE_API_KEY,
+		key: process.env.TEXTILE_API_KEY
 	},
+	privateKey: process.env.ADMIN_PRIVATE_KEY,
 	collections: [
 		{
 			name: 'person',
@@ -23,12 +31,13 @@ const config = {
 					bio: { type: 'string' },
 				},
 			},
+			writeValidator
 		},
 	],
 	async processEvent(ctx, event, textileClient) {
+		console.log(`${event.collection}::${event.action}`)
 		if (event.collection === 'person') {
 			if (event.action === 'create') {
-				console.log('create')
 				const newPerson = {
 					_id: '',
 					name: event.params[0],
@@ -37,7 +46,6 @@ const config = {
 				await textileClient.create(ctx.threadID, event.collection, [newPerson])
 			}
 			if (event.action === 'update') {
-				console.log('update')
 				const query = new Where('name').eq(event.params[0])
 				const result = await textileClient.find(
 					ctx.threadID,
@@ -53,7 +61,6 @@ const config = {
 				}
 			}
 			if (event.action === 'delete') {
-				console.log('delete')
 				const query = new Where('name').eq(event.params[0])
 				const result = await textileClient.find(
 					ctx.threadID,

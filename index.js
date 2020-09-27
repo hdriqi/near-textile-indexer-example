@@ -5,6 +5,7 @@ const { Where } = require('near-textile-indexer/textile')
 dotenv.config()
 
 const writeValidator = (writer) => {
+	// only allow admin public key to write new data to thread
 	if (writer == 'bbaareigzrypntrkuzr54rg2q235qqqpmhtda3jwelvmxbutnupifumy26i') {
 		return true
 	}
@@ -19,6 +20,7 @@ const config = {
 		key: process.env.TEXTILE_API_KEY
 	},
 	privateKey: process.env.ADMIN_PRIVATE_KEY,
+	// collections config setting
 	collections: [
 		{
 			name: 'person',
@@ -34,6 +36,7 @@ const config = {
 			writeValidator
 		},
 	],
+	// callback called when new event found
 	async processEvent(ctx, event, textileClient) {
 		console.log(`${event.collection}::${event.action}`)
 		if (event.collection === 'person') {
@@ -77,4 +80,5 @@ const config = {
 	},
 }
 
+// start indexer based on config
 indexer(config)

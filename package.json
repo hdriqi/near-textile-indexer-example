@@ -13,7 +13,7 @@
     "dotenv": "^8.2.0",
     "isomorphic-ws": "^4.0.1",
     "near-api-js": "^0.29.1",
-    "near-textile-indexer": "file:.yalc/near-textile-indexer",
+    "near-textile-indexer": "^1.0.0",
     "ws": "^7.3.1"
   },
   "devDependencies": {

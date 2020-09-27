@@ -2011,6 +2011,17 @@ near-shell@^0.24.9:
     "@ledgerhq/hw-transport-node-hid" "^5.15.0"
     near-ledger-js "^0.1.1"
 
+near-textile-indexer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/near-textile-indexer/-/near-textile-indexer-1.0.0.tgz#7a583851fb5813f8e6964b6140d53761eac2550f"
+  integrity sha512-3dmyP1iedKN9BDx9bt0hg659Dh40Xe/G4fPQbJNL1F4Upa2DlTwBQ0jPrBoM6DyqrhdDvu+adkdbFsgzhu9nfg==
+  dependencies:
+    "@textile/hub" "^1.0.0"
+    dotenv "^8.2.0"
+    isomorphic-ws "^4.0.1"
+    near-api-js "^0.29.1"
+    ws "^7.3.1"
+
 near-vm@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/near-vm/-/near-vm-1.1.0.tgz#3166bdef13e7071829d2f5621b16ddfe298e011c"

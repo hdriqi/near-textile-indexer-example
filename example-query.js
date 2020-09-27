@@ -1,7 +1,10 @@
+const dotenv = require('dotenv')
 const { Client, ThreadID, PrivateKey } = require('@textile/hub')
 
+dotenv.config()
+
 const keyInfo = {
-	key: 'bmq6kfkrfjf27lymcfxgx74sgf4'
+	key: process.env.PUBLIC_TEXTILE_API_KEY,
 }
 const threadID = 'bafk4e6cem4dy6eucaha2oirhdsoxrrshuzz6i4cxepa7dtxmwvzx6fa'
 
@@ -10,13 +13,8 @@ async function find() {
 	const identity = PrivateKey.fromRandom()
 	await client.getToken(identity)
 	const tID = ThreadID.fromString(threadID)
-	const x = await client.find(tID, 'person', {})
-	console.log(x)
-	await client.create(tID, 'person', [{
-		_id: '',
-		bio: 'hello',
-		name: 'world'
-	}])
+	const personList = await client.find(tID, 'person', {})
+	console.log(personList)
 }
 
 find()
